@@ -1,6 +1,7 @@
 int ct=15;
 int pirPin=2;
 int ledPin=13; //ALARMA
+int ledPin7=7;  //COCINA
 int ledPin5=5;  //CAMARA
 int buzzerPin=10;
 
@@ -48,5 +49,20 @@ if (x=='f')//FUERA CAMARA
 {
   digitalWrite(ledPin5, LOW);
 }
- 
+ if (x=='c')//PRENDE LUCES
+{ 
+  digitalWrite(ledPin7, HIGH);
+}
+if (x=='d')//FUERA LUCES
+{
+  digitalWrite(ledPin7, LOW);
+}
+if (x=='g')//PRENDE COCINA
+{ 
+  digitalWrite(ledPin7, HIGH);
+}
+if (x=='h')//FUERA COCINA
+{
+  digitalWrite(ledPin7, LOW);
+}
 }
