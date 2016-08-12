@@ -57,6 +57,28 @@ public class Escucha extends ResultAdapter
 
  public static void main(String args[])
  {
- 
+ try
+ {
+ recognizer = Central.createRecognizer(new EngineModeDesc(Locale.ROOT));
+ recognizer.allocate();
+
+ FileReader grammar1 =new FileReader("c:/Gramatica.txt");
+
+ RuleGrammar rg = recognizer.loadJSGF(grammar1);
+ rg.setEnabled(true);
+
+ recognizer.addResultListener(new Escucha());
+
+ System.out.println("Empieze Dictado");
+ recognizer.commitChanges();
+
+ recognizer.requestFocus();
+ recognizer.resume();
+ }catch (Exception e)
+ {
+ System.out.println("Exception en " + e.toString());
+ e.printStackTrace();
+ System.exit(0);
+ }
  }
 }
