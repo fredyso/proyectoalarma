@@ -2,6 +2,7 @@ int ct=15;
 int pirPin=2;
 int ledPin=13; //ALARMA
 int ledPin7=7;  //COCINA
+int ledPin6=6;  //SALA
 int ledPin5=5;  //CAMARA
 int buzzerPin=10;
 
@@ -10,7 +11,11 @@ void setup() {
   pinMode(pirPin,INPUT);
   pinMode(ledPin,OUTPUT);
    pinMode(ledPin5,OUTPUT);
+   pinMode(ledPin7,OUTPUT);
+  pinMode(ledPin6,OUTPUT);
     digitalWrite(ledPin5,LOW);
+    digitalWrite(ledPin7,LOW);
+  digitalWrite(ledPin6,LOW);
   pinMode(buzzerPin,OUTPUT);
   digitalWrite(pirPin,LOW);
    digitalWrite(buzzerPin,LOW);
@@ -40,7 +45,10 @@ void loop() {
      {
        
        digitalWrite(buzzerPin, LOW); 
-     }  
+     } 
+    if (x=='b'){ 
+  digitalWrite(ledPin, LOW);
+} 
      if (x=='e')//CAMARA
 { 
   digitalWrite(ledPin5, HIGH);
@@ -52,10 +60,12 @@ if (x=='f')//FUERA CAMARA
  if (x=='c')//PRENDE LUCES
 { 
   digitalWrite(ledPin7, HIGH);
+   digitalWrite(ledPin6, HIGH);  
 }
 if (x=='d')//FUERA LUCES
 {
   digitalWrite(ledPin7, LOW);
+  digitalWrite(ledPin6, LOW); 
 }
 if (x=='g')//PRENDE COCINA
 { 
@@ -64,5 +74,13 @@ if (x=='g')//PRENDE COCINA
 if (x=='h')//FUERA COCINA
 {
   digitalWrite(ledPin7, LOW);
+}
+if (x=='i')//PRENDE SALA
+{ 
+  digitalWrite(ledPin6, HIGH);
+}
+if (x=='j')//FUERA SALA
+{
+  digitalWrite(ledPin6, LOW);
 }
 }
