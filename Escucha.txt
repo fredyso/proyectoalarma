@@ -1,9 +1,5 @@
 package javaapplication3;
 
-/**
- *
- * @author Cmop
- */
 import javax.speech.*;
 import javax.speech.recognition.*;
 import java.io.FileReader;
@@ -35,11 +31,220 @@ public class Escucha extends ResultAdapter
  System.out.print(gst + " ");
  }
  System.out.println();
- if(gst.equals("Salir"))
+ if(gst.equals("prende"))
  {
  recognizer.deallocate();
- args[0]="Hasta la proxima Ingeniero Ivan Soria!";
+ args[0]="la alarma esta encendida";
  System.out.println(args[0]);
+ Arduino.sendData("a");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("fuera"))
+ {
+ recognizer.deallocate();
+ args[0]="la alarma esta apagada";
+ System.out.println(args[0]);
+ Arduino.sendData("b");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("prende luces"))
+ {
+ recognizer.deallocate();
+ args[0]="Luz sala y Cocina Prendidas";
+ System.out.println(args[0]);
+ Arduino.sendData("c");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("fuera luces"))
+ {
+ recognizer.deallocate();
+ args[0]="Luz sala y cocina apagadas";
+ System.out.println(args[0]);
+ Arduino.sendData("d");
+ Main.main(args);
+ System.exit(0);
+ }
+  if(gst.equals("prende video"))
+ {
+ recognizer.deallocate();
+ args[0]="La camara esta encendida";
+ System.out.println(args[0]);
+ Arduino.sendData("e");
+ Main.main(args);
+ System.exit(0);
+ }
+  if(gst.equals("fuera video"))
+ {
+ recognizer.deallocate();
+ args[0]="La camara esta apagada";
+ System.out.println(args[0]);
+ Arduino.sendData("f");
+ Main.main(args);
+ System.exit(0);
+ }
+   if(gst.equals("prende cocina"))
+ {
+ recognizer.deallocate();
+ args[0]="la luz de la cocina esta encendida";
+ System.out.println(args[0]);
+ Arduino.sendData("g");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("fuera cocina"))
+ {
+ recognizer.deallocate();
+ args[0]="la luz de la cocina esta apagada";
+ System.out.println(args[0]);
+ Arduino.sendData("h");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("prende sala"))
+ {
+ recognizer.deallocate();
+ args[0]="la luz de la sala esta prendida";
+ System.out.println(args[0]);
+ Arduino.sendData("i");
+ Main.main(args);
+ System.exit(0);
+ }
+ /*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package javaapplication3;
+
+/**
+ *
+ * @author Cmop
+ */
+import javax.speech.*;
+import javax.speech.recognition.*;
+import java.io.FileReader;
+import java.util.Locale;
+
+
+import panamahitek.Arduino.PanamaHitek_Arduino;
+
+
+
+public class Escucha extends ResultAdapter
+{
+ PanamaHitek_Arduino Arduino = new PanamaHitek_Arduino();
+
+ static Recognizer recognizer;
+ String gst;
+
+ @Override
+ public void resultAccepted(ResultEvent re)
+ {
+ try
+ {
+ Result res = (Result)(re.getSource());
+ ResultToken tokens[] = res.getBestTokens();
+
+ String args[]= new String[1];
+ args[0]="";
+ for (int i=0; i < tokens.length; i++)
+ {
+ gst = tokens[i].getSpokenText();
+ args[0]+=gst+" ";
+ System.out.print(gst + " ");
+ Arduino.sendData(gst + " ");
+ }
+ System.out.println();
+ if(gst.equals("prende"))
+ {
+ recognizer.deallocate();
+ args[0]="la alarma esta encendida";
+ System.out.println(args[0]);
+ Arduino.sendData("a");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("fuera"))
+ {
+ recognizer.deallocate();
+ args[0]="la alarma esta apagada";
+ System.out.println(args[0]);
+ Arduino.sendData("b");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("prende luces"))
+ {
+ recognizer.deallocate();
+ args[0]="Luz sala y Cocina Prendidas";
+ System.out.println(args[0]);
+ Arduino.sendData("c");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("fuera luces"))
+ {
+ recognizer.deallocate();
+ args[0]="Luz sala y cocina apagadas";
+ System.out.println(args[0]);
+ Arduino.sendData("d");
+ Main.main(args);
+ System.exit(0);
+ }
+  if(gst.equals("prende video"))
+ {
+ recognizer.deallocate();
+ args[0]="La camara esta encendida";
+ System.out.println(args[0]);
+ Arduino.sendData("e");
+ Main.main(args);
+ System.exit(0);
+ }
+  if(gst.equals("fuera video"))
+ {
+ recognizer.deallocate();
+ args[0]="La camara esta apagada";
+ System.out.println(args[0]);
+ Arduino.sendData("f");
+ Main.main(args);
+ System.exit(0);
+ }
+   if(gst.equals("prende cocina"))
+ {
+ recognizer.deallocate();
+ args[0]="la luz de la cocina esta encendida";
+ System.out.println(args[0]);
+ Arduino.sendData("g");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("fuera cocina"))
+ {
+ recognizer.deallocate();
+ args[0]="la luz de la cocina esta apagada";
+ System.out.println(args[0]);
+ Arduino.sendData("h");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("prende sala"))
+ {
+ recognizer.deallocate();
+ args[0]="la luz de la sala esta prendida";
+ System.out.println(args[0]);
+ Arduino.sendData("i");
+ Main.main(args);
+ System.exit(0);
+ }
+ if(gst.equals("fuera sala"))
+ {
+ recognizer.deallocate();
+ args[0]="la luz de la cocina esta apagada";
+ System.out.println(args[0]);
+ Arduino.sendData("j");
  Main.main(args);
  System.exit(0);
  }
@@ -57,6 +262,28 @@ public class Escucha extends ResultAdapter
 
  public static void main(String args[])
  {
- 
+ try
+ {
+ recognizer = Central.createRecognizer(new EngineModeDesc(Locale.ROOT));
+ recognizer.allocate();
+
+ FileReader grammar1 =new FileReader("c:/Gramatica.txt");
+
+ RuleGrammar rg = recognizer.loadJSGF(grammar1);
+ rg.setEnabled(true);
+
+ recognizer.addResultListener(new Escucha());
+
+ System.out.println("Empieze Dictado");
+ recognizer.commitChanges();
+
+ recognizer.requestFocus();
+ recognizer.resume();
+ }catch (Exception e)
+ {
+ System.out.println("Exception en " + e.toString());
+ e.printStackTrace();
+ System.exit(0);
+ }
  }
 }
