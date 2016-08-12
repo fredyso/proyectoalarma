@@ -1,0 +1,10 @@
+package javaapplication3;
+
+import javax.speech.*;
+import javax.speech.synthesis.*;
+import java.util.*;
+
+public class Main {
+
+ 
+}
